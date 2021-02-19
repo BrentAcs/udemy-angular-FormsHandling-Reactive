@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
-      <form [formGroup]="signupForm">
+      <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
           <label for="username">Username</label>
           <input
@@ -9,6 +9,10 @@
             id="username"
             formControlName="username"
             class="form-control">
+            <span
+              class="help-block"
+              *ngIf="!signupForm.controls['username'].valid && signupForm.controls['username'].touched"
+              >Please enter a Username!</span>
         </div>
         <div class="form-group">
           <label for="email">email</label>
@@ -17,6 +21,10 @@
             id="email"
             formControlName="email"
             class="form-control">
+            <span
+              class="help-block"
+              *ngIf="!signupForm.controls['email'].valid && signupForm.controls['email'].touched"
+              >Please enter a valid email address!</span>
         </div>
         <div class="radio" *ngFor="let gender of genders">
           <label>
@@ -26,7 +34,10 @@
               [value]="gender">{{ gender }}
           </label>
         </div>
-        <button class="btn btn-primary" type="submit">Submit</button>
+        <button
+          class="btn btn-primary"
+          type="submit"
+          [disabled]="!signupForm.valid">Submit</button>
       </form>
     </div>
   </div>
