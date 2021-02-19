@@ -38,7 +38,11 @@
           class="btn btn-primary"
           type="submit"
           [disabled]="!signupForm.valid">Submit</button>
-      </form>
+        <span
+          class="help-block"
+          *ngIf="!signupForm.valid && signupForm.touched"
+          >Please complete the form!</span>
+        </form>
     </div>
   </div>
 </div>
